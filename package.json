@@ -1,0 +1,15 @@
+{
+  "name": "nameable",
+  "version": "1.0.6",
+  "description": "Format names",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "name",
+    "format"
+  ],
+  "author": "",
+  "license": "ISC"
+}
