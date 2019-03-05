@@ -37,16 +37,21 @@ class Name {
         if (typeof format !== 'string') {
             throw Error('format must be string')
         }
+        if (maxLength <= truncation.length) {
+            throw Error('maxLength must be greater than truncation.length')
+        }
         let name = ''
         while (format.length > 0) {
             let found = false
             for (const rule of rules) {
                 if (format.slice(0, rule.format.length) === rule.format) {
-                    let next = this[rule.replaceKey] || ''
-                    if (rule.transform) {
-                        next = rule.transform(next)
+                    if (this[rule.replaceKey]) {
+                        let next = this[rule.replaceKey]
+                        if (rule.transform) {
+                            next = rule.transform(next)
+                        }
+                        name += next
                     }
-                    name += next
                     format = format.slice(rule.format.length)
                     found = true
                     break
@@ -63,6 +68,11 @@ class Name {
             }
         }
         return name
+            .replace(/^[\.,]/, '')
+            .replace(/ [\.,]/g, '')
+            .replace(/\s\s+/g, ' ')
+            .trim()
+            .replace(/,$/, '')
     }
 }
 
