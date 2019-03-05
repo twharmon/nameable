@@ -1,5 +1,10 @@
 # Nameable
+Format names
 
+## Getting Started
+`npm install --save nameable`
+
+## Usage
 ```
 const nameable = require('nameable')
 
