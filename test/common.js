@@ -1,4 +1,4 @@
-const nameable = require('../index')
+const nameable = require('../src/index')
 
 nameable.config({
     firstKey: 'firstName',
