@@ -1,8 +1,11 @@
 {
   "name": "nameable",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Format and truncate names of people",
   "main": "src/index.js",
+  "files": [
+    "/src"
+  ],
   "scripts": {
     "test": "mocha --recursive"
   },
