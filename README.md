@@ -1,23 +1,30 @@
 # Nameable [![Build Status](https://travis-ci.com/twharmon/nameable.svg?branch=master)](https://travis-ci.com/twharmon/nameable)
-Format names
+Format and truncate names of people.
 
 ## Getting Started
 `npm install --save nameable`
+
+## Setup
+Set the configuration for the whole project.
+
+```
+const nameable = require('nameable')
+
+nameable.config({
+    firstKey: 'firstName',
+    middleKey: 'middleName',
+    lastKey: 'lastName',
+})
+```
 
 ## Usage
 ```
 const nameable = require('nameable')
 
-nameable.config({
-    firstKey: 'first',
-    middleKey: 'middle',
-    lastKey: 'last',
-})
-
 const person = {
-    first: 'John',
-    middle: 'Wayne',
-    last: 'Smith',
+    firstName: 'John',
+    middleName: 'Wayne',
+    lastName: 'Smith',
 }
 
 const name = nameable.new(person)

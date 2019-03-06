@@ -1,5 +1,5 @@
 const expect = require('chai').expect
-const nameable = require('../index')
+const nameable = require('../src/index')
 
 describe('new()', () => {
     it('should correctly create new name', () => {
