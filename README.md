@@ -1,4 +1,4 @@
-# Nameable
+# Nameable [![Build Status](https://travis-ci.com/twharmon/nameable.svg?branch=master)](https://travis-ci.com/twharmon/nameable)
 Format names
 
 ## Getting Started
