@@ -88,7 +88,7 @@ describe('format()', () => {
         expect(name.format('Last M F')).to.be.equal('Smith')
     })
 
-    it('should correctly handle a null name at end and at end', () => {
+    it('should correctly handle a null name at front and at end', () => {
         const name = nameable.new(onlyLastName)
         expect(name.format('Middle, Last First')).to.be.equal('Smith')
         expect(name.format('Middle Last, First')).to.be.equal('Smith')
