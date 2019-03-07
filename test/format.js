@@ -36,6 +36,11 @@ describe('format()', () => {
         expect(name.format('Last first m')).to.be.equal('Smith john w')
     })
 
+    it('should correctly format initials without spaces', () => {
+        const name = nameable.new(person)
+        expect(name.format('FML')).to.be.equal('JWS')
+    })
+
     it('should leave extra charachers in place', () => {
         const name = nameable.new(person)
         expect(name.format('Last (First:M)')).to.be.equal('Smith (John:W)')

@@ -1,13 +1,14 @@
 {
   "name": "nameable",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Format and truncate names of people",
   "main": "src/index.js",
   "files": [
     "/src"
   ],
   "scripts": {
-    "test": "mocha --recursive"
+    "test": "mocha",
+    "bench": "node bench"
   },
   "keywords": [
     "name",
@@ -16,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "benchmark": "^2.1.4",
     "chai": "^4.2.0",
     "mocha": "^6.0.2"
   }

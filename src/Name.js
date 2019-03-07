@@ -20,6 +20,11 @@ const rules = [
     { format: 'l', replaceKey: 'last', transform: s => s.slice(0, 1).toLowerCase() },
 ]
 
+const initialPunctRegex = new RegExp(/^[\.,]/)
+const postSpacePunctRegex = new RegExp(/ [\.,]/, 'g')
+const multiSpaceRegex = new RegExp(/\s\s+/, 'g')
+const finalCommaRegex = new RegExp(/,$/)
+
 class Name {
     constructor(first, middle, last) {
         this.first = first
@@ -40,6 +45,7 @@ class Name {
         if (maxLength <= truncation.length) {
             throw Error('maxLength must be greater than truncation.length')
         }
+        
         let name = ''
         while (format.length > 0) {
             let found = false
@@ -62,17 +68,19 @@ class Name {
                 format = format.slice(1)
             }
         }
+
         for (const part of name.split(/\b/)) {
             if (part.length > maxLength) {
                 name = name.replace(part, part.slice(0, maxLength - truncation.length) + truncation)
             }
         }
+        
         return name
-            .replace(/^[\.,]/, '')
-            .replace(/ [\.,]/g, '')
-            .replace(/\s\s+/g, ' ')
+            .replace(initialPunctRegex, '')
+            .replace(postSpacePunctRegex, '')
+            .replace(multiSpaceRegex, ' ')
             .trim()
-            .replace(/,$/, '')
+            .replace(finalCommaRegex, '')
     }
 }
 
