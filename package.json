@@ -1,6 +1,6 @@
 {
   "name": "nameable",
-  "version": "1.0.13",
+  "version": "1.1.0",
   "description": "Format and truncate names of people",
   "main": "src/index.js",
   "files": [

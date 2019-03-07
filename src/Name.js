@@ -20,6 +20,7 @@ const rules = [
     { format: 'l', replaceKey: 'last', transform: s => s.slice(0, 1).toLowerCase() },
 ]
 
+const wordBoundaryRegex = new RegExp(/\b/)
 const initialPunctRegex = new RegExp(/^[\.,]/)
 const postSpacePunctRegex = new RegExp(/ [\.,]/, 'g')
 const multiSpaceRegex = new RegExp(/\s\s+/, 'g')
@@ -69,7 +70,7 @@ class Name {
             }
         }
 
-        for (const part of name.split(/\b/)) {
+        for (const part of name.split(wordBoundaryRegex)) {
             if (part.length > maxLength) {
                 name = name.replace(part, part.slice(0, maxLength - truncation.length) + truncation)
             }

@@ -15,6 +15,8 @@ describe('format()', () => {
         lastName: 'Smith',
     }
 
+    let onlyLastName = { lastName: 'Smith' }
+
     let longName = {
         firstName: 'John',
         middleName: 'Wayne',
@@ -70,6 +72,38 @@ describe('format()', () => {
         expect(name.format('First Last M')).to.be.equal('John Smith')
     })
 
+    it('should correctly handle two null names at front', () => {
+        const name = nameable.new(onlyLastName)
+        expect(name.format('Middle First Last')).to.be.equal('Smith')
+        expect(name.format('Middle, First, Last')).to.be.equal('Smith')
+        expect(name.format('Middle F. Last')).to.be.equal('Smith')
+        expect(name.format('Middle F Last')).to.be.equal('Smith')
+    })
+
+    it('should correctly handle two null names at end', () => {
+        const name = nameable.new(onlyLastName)
+        expect(name.format('Last, Middle First')).to.be.equal('Smith')
+        expect(name.format('Last Middle, First')).to.be.equal('Smith')
+        expect(name.format('Last M. F.')).to.be.equal('Smith')
+        expect(name.format('Last M F')).to.be.equal('Smith')
+    })
+
+    it('should correctly handle a null name at end and at end', () => {
+        const name = nameable.new(onlyLastName)
+        expect(name.format('Middle, Last First')).to.be.equal('Smith')
+        expect(name.format('Middle Last, First')).to.be.equal('Smith')
+        expect(name.format('M. L. F.')).to.be.equal('S.')
+        expect(name.format('M L F')).to.be.equal('S')
+    })
+
+    it('should correctly completely null name', () => {
+        const name = nameable.new({})
+        expect(name.format('Middle, Last First')).to.be.equal('')
+        expect(name.format('Middle Last, First')).to.be.equal('')
+        expect(name.format('M. L. F.')).to.be.equal('')
+        expect(name.format('M L F')).to.be.equal('')
+    })
+
     it('should correctly truncate name', () => {
         const name = nameable.new(longName)
         expect(name.format('Last, First M.', 8)).to.be.equal('Washi..., John W.')
@@ -78,6 +112,16 @@ describe('format()', () => {
     it('should correctly truncate name with custom truncation', () => {
         const name = nameable.new(longName)
         expect(name.format('Last, First M.', 8, '.')).to.be.equal('Washing., John W.')
+    })
+
+    it('should throw if nothing passed to new()', () => {
+        let error = null
+        try {
+            nameable.new()
+        } catch(err) {
+            error = err
+        }
+        expect(error).not.to.be.null
     })
 
     it('should throw if format not string', () => {
